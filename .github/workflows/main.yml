@@ -30,12 +30,6 @@ jobs:
             php -l "$file"
           done
 
-jobs:
-  # Premier job: Builder l'image Docker
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Checkout the repository
       uses: actions/checkout@v2
 
