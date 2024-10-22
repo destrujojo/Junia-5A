@@ -31,7 +31,7 @@ jobs:
           done 
   build:
     name: build image
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout the repository
@@ -42,7 +42,7 @@ jobs:
 
   # Deuxième job: Pousser l'image sur Docker Hub (se lance après "build")
   push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
 
     steps:
