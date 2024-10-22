@@ -28,19 +28,23 @@ jobs:
           for file in $(find . -name "*.php"); do
             echo "Linting $file"
             php -l "$file"
-          done
+          done 
+  build:
+    name: build image
+    runs-on: ubuntu-latest
 
-    - name: Checkout the repository
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Login to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-    - name: Build Docker image
-      run: docker build -t nginx-junia /var/www/Junia-A5/Junia-5A/dockerfile
+      - name: Build Docker image
+        run: docker build -t nginx-junia /var/www/Junia-A5/Junia-5A/dockerfile
 
   # Deuxième job: Pousser l'image sur Docker Hub (se lance après "build")
   push:
@@ -48,12 +52,12 @@ jobs:
     needs: build
 
     steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v2
+      - name: Checkout the repository
+        uses: actions/checkout@v2
 
-    - name: Login to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-    - name: Push Docker image to Docker Hub
-      run: docker push nginx-junia
+      - name: Push Docker image to Docker Hub
+        run: docker push nginx-junia
 
