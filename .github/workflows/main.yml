@@ -1,0 +1,32 @@
+name: PHP Lint Workflow
+
+# Déclenche le workflow sur les pushs dans la branche develop
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  lint:
+    name: Lint PHP Files
+    runs-on: ubuntu-latest
+
+    steps:
+      # Vérifie le dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Installe PHP sur l'environnement
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Ou toute autre version de PHP dont tu as besoin
+
+      # Cherche tous les fichiers PHP et les passe à la commande php -l
+      - name: Lint PHP files
+        run: |
+          for file in $(find . -name "*.php"); do
+            echo "Linting $file"
+            php -l "$file"
+          done
+
