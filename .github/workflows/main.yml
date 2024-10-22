@@ -1,5 +1,6 @@
 name: PHP Lint Workflow
 
+
 # Déclenche le workflow sur les pushs dans la branche develop
 on:
   push:
