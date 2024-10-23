@@ -10,5 +10,5 @@ RUN apt-get update && \
 # COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Commande par défaut pour démarrer Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD service php8.2-fpm start && nginx -g 'daemon off;'
 
