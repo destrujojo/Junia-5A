@@ -8,7 +8,9 @@ RUN apt-get update && \
 
 # Copier la configuration Nginx personnalisée si besoin (optionnel)
 # COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY /var/www/JuniaA5/Junia-5A/dockerfile/start.sh /start.sh 
+RUN chmod +x /start.sh
 
-# Commande par défaut pour démarrer Nginx
-CMD /etc/init.d/php8.2-fpm start -F && nginx -g 'daemon off;'
+# Commande
+CMD ["/start.sh"]
 
