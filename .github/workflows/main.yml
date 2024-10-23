@@ -58,6 +58,7 @@ jobs:
   deploie:
     name: deploiement ssh
     runs-on: self-hosted
+    needs: push
 
     steps:
       - name: connexion ssh
