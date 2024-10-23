@@ -8,7 +8,7 @@ RUN apt-get update && \
 
 # Copier la configuration Nginx personnalisée si besoin (optionnel)
 # COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY /var/www/Junia-A5/Junia-5A/dockerfile/start.sh /start.sh 
+COPY /start.sh /start.sh 
 RUN chmod +x /start.sh
 
 # Commande
