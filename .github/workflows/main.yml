@@ -55,7 +55,7 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/nginx-junia
-
+  # Troisième job: Pousser l'image sur Docker Hub (se lance après "push")
   deploie:
     name: deploiement ssh
     runs-on: self-hosted
